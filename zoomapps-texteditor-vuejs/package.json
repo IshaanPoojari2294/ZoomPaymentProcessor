@@ -1,0 +1,45 @@
+{
+  "name": "zoomapps-texteditor-vuejs",
+  "version": "1.0.2",
+  "description": "A Zoom App Template",
+  "private": true,
+  "license": "MIT",
+  "main": "dist/index.js",
+  "type": "module",
+  "workspaces": [
+    "server",
+    "client"
+  ],
+  "scripts": {
+    "dev": "concurrently -c \"bgCyan.bold,bgYellow.bold\" \"npm:client\" \"npm:server\"",
+    "build": "npm run build --prefix client",
+    "start": "npm --prefix dist run start",
+    "client": "npm run dev --prefix client",
+    "server": "npm run dev --prefix server",
+    "old-build": "node scripts/build.js",
+    "old-dev": "node scripts/dev.js",
+    "prepare": "husky install",
+    "postinstall": "node scripts/gen-secrets.cjs",
+    "proxy": "lt --port 3000"
+  },
+  "devDependencies": {
+    "await-spawn": "^4.0.2",
+    "concurrently": "^7.1.0",
+    "dotenv-cli": "^5.1.0",
+    "envsub": "^4.0.7",
+    "fs-extra": "^10.1.0",
+    "husky": "^7.0.4",
+    "server": "^0.1.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "eslint --cache --fix",
+      "prettier --write"
+    ]
+  },
+  "dependencies": {
+    "@zoom/appssdk": "^0.16.7",
+    "ts-node": "^10.8.1",
+    "upath": "^2.0.1"
+  }
+}
